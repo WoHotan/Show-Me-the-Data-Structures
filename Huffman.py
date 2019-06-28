@@ -59,6 +59,11 @@ class HuffMan:
 
     def huffman_encoding(self, data):
         self.data = data
+        if self.data == None:
+            return None
+        if len(self.data) == 1:
+            self.decode = {'0': data}
+            return '0', self.decode
         huff_tree = self.huff_tree()
         self.huff_code(huff_tree)
         result = ''
@@ -85,11 +90,29 @@ if __name__ == "__main__":
     print ("The content of the data is: {}\n".format(a_great_sentence))
     huffman = HuffMan()
     encoded_data, dict_ = huffman.huffman_encoding(a_great_sentence)
-
+    # encode data size should less than origin data size.
     print ("The size of the encoded data is: {}\n".format(sys.getsizeof(int(encoded_data, base=2))))
+    #should print encode data like 0101.
     print ("The content of the encoded data is: {}\n".format(encoded_data))
 
     decoded_data = huffman.huffman_decoding(encoded_data, dict_)
-
+    #the size of the decoded data should be equal to the size of the origin data.
     print ("The size of the decoded data is: {}\n".format(sys.getsizeof(decoded_data)))
+    #the content of the encoded data should equal to the origin content.
+    print ("The content of the encoded data is: {}\n".format(decoded_data))
+    
+    single_string = "a"
+    print ("The size of the data is: {}\n".format(sys.getsizeof(single_string)))
+    print ("The content of the data is: {}\n".format(single_string))
+    huffman = HuffMan()
+    encoded_data, dict_ = huffman.huffman_encoding(single_string)
+    # encode data size should less than origin data size.
+    print ("The size of the encoded data is: {}\n".format(sys.getsizeof(int(encoded_data, base=2))))
+    #should print encode data like 0101.
+    print ("The content of the encoded data is: {}\n".format(encoded_data))
+
+    decoded_data = huffman.huffman_decoding(encoded_data, dict_)
+    #the size of the decoded data should be equal to the size of the origin data.
+    print ("The size of the decoded data is: {}\n".format(sys.getsizeof(decoded_data)))
+    #the content of the encoded data should equal to the origin content.
     print ("The content of the encoded data is: {}\n".format(decoded_data))

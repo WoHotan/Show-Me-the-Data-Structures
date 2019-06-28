@@ -13,11 +13,11 @@ class LinkedList:
 
     def __str__(self):
         cur_head = self.head
-        out_string = ""
+        out_list = []
         while cur_head:
-            out_string += str(cur_head.value) + " -> "
+            out_list.append(str(cur_head.value))
             cur_head = cur_head.next
-        return out_string
+        return "->".join(out_list)
 
 
     def append(self, value):
@@ -76,7 +76,7 @@ def intersection(llist_1, llist_2):
         intersection_llist.append(value)
     return intersection_llist
 
-# Test case 1
+print('# Test case 1')
 
 linked_list_1 = LinkedList()
 linked_list_2 = LinkedList()
@@ -90,16 +90,16 @@ for i in element_1:
 for i in element_2:
     linked_list_2.append(i)
 
-print (union(linked_list_1,linked_list_2))
-print (intersection(linked_list_1,linked_list_2))
+print (union(linked_list_1,linked_list_2))        # return a linked list, elements are linked_list_1 ∪ linked_list_2.
+print (intersection(linked_list_1,linked_list_2)) # return a linked list, elements are linkded_list_1 ∩ linked_linst_2.
 
-# Test case 2
+print('\n# Test case 2')
 
 linked_list_3 = LinkedList()
 linked_list_4 = LinkedList()
 
-element_1 = [10,15, 4, 20, 8]
-element_2 = [8, 2, 4, 10, 8]
+element_1 = [9,15, 5, 23, 8]
+element_2 = [8, 2, 5, 11, 8]
 
 for i in element_1:
     linked_list_3.append(i)
@@ -107,5 +107,22 @@ for i in element_1:
 for i in element_2:
     linked_list_4.append(i)
 
-print (union(linked_list_3,linked_list_4))
-print (intersection(linked_list_3,linked_list_4))
+print (union(linked_list_3,linked_list_4))        # return a linked list, elements are linked_list_3 ∪ linked_list_4.
+print (intersection(linked_list_3,linked_list_4)) # return a linked list, elements are linkded_list_3 ∩ linked_linst_4
+
+print('\n# Test case 3')
+
+linked_list_5 = LinkedList()
+linked_list_6 = LinkedList()
+
+element_1 = []
+element_2 = [1]
+
+for i in element_1:
+    linked_list_5.append(i)
+
+for i in element_2:
+    linked_list_6.append(i)
+
+print (union(linked_list_5,linked_list_6))        # return a linked list, elements are linked_list_5 ∪ linked_list_6.
+print (intersection(linked_list_5,linked_list_6)) # return a linked list, elements are linkded_list_5 ∩ linked_linst_6.

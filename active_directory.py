@@ -35,18 +35,25 @@ def is_user_in_group(user, group):
             return True
     for sub_group in groups:
         return is_user_in_group(user, sub_group)
+    return False
 
+
+
+# all assert should be pass
 parent = Group("parent")
+assert(is_user_in_group("parent", parent) == False)
 child = Group("child")
 sub_child = Group("subchild")
 sub_sub_child = Group("sub2child")
 
 sub_sub_child.add_user("sub2child")
+assert(is_user_in_group("sub2child", parent) == False)
 sub_child_user = "sub_child_user"
 sub_child.add_user(sub_child_user)
 sub_child.add_user("youngqueenz")
 
 sub_child.add_group(sub_sub_child)
+assert(is_user_in_group("sub2child", sub_child) == True)
 child.add_group(sub_child)
 parent.add_group(child)
 assert(is_user_in_group("youngqueenz", parent) == True)

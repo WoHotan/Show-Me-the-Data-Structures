@@ -32,11 +32,13 @@ class BlockChain:
     def get_block(self, data):
         # get block denpend on timestamp
         if self.head == None:
-            return None
+            return False
         block = self.head
         while block:
             if block.data == data:
                 return (block.data, block.timestamp, block.hash)
+            else:
+                return False
             block = block.next
     
     def __repr__(self):
@@ -50,9 +52,16 @@ class BlockChain:
 
 if __name__ == '__main__':
     blockchain = BlockChain()
+    print(blockchain) #a empty block
     timestamp1 = time.time()
+    print('########### add block1 ###########')
     blockchain.add_block(timestamp1, "block1")
+    print(blockchain) #blockchain should print block1
+    print('########### get block1 ###########')
+    print(blockchain.get_block('block1'))
+    print('########### add block2 ###########')
     timestamp2 = time.time()
     blockchain.add_block(timestamp2, "block2")
-    print(blockchain.get_block('block1'))
-    print(blockchain)
+    print(blockchain) #blockchain should print block1 and block2
+    print('########### get block3 ###########')
+    print(blockchain.get_block('block3')) # should return false
