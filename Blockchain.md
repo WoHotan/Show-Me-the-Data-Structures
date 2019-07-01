@@ -1,0 +1,1 @@
+1. Use linked list to implement blockchain, and the add and get function time complecity are O(n).
