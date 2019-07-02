@@ -43,6 +43,8 @@ class BlockChain:
     
     def __repr__(self):
         block = self.head
+        if block == None:
+            return "empty block chain"
         output = []
         while block:
             output.append((block.data, block.timestamp))
