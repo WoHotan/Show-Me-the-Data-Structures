@@ -19,7 +19,7 @@ class Group(object):
     def get_name(self):
         return self.name
 
-def is_user_in_group(user, group):
+def is_user_in_group(user=None, group=None):
     """
     Return True if user is in the group, False otherwise.
 
@@ -27,9 +27,13 @@ def is_user_in_group(user, group):
       user(str): user name/id
       group(class:Group): group to check user membership against
     """
+    if user == None:
+        return "User input missing"
+    elif group == None:
+        return "Group input missing"
     if not isinstance(group, Group):
         return "Invalid group!"
-        
+
     users = group.get_users()
     groups = group.get_groups()
 
@@ -62,4 +66,5 @@ parent.add_group(child)
 assert(is_user_in_group("youngqueenz", parent) == True)
 
 assert(is_user_in_group('youngqueenz', 'group') == "Invalid group!")
-assert(is_user_in_group('youngqueenz') == True)
+assert(is_user_in_group('youngqueenz') == 'Group input missing')
+assert(is_user_in_group(group=parent) == "User input missing")
