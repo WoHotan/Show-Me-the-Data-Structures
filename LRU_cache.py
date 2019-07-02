@@ -15,8 +15,10 @@ class LRU_Cache:
         self.tail = Node(None, -1)
         self.top.next = self.tail
         self.tail.prev = self.top
-
+    
     def get(self, key):
+        if self.capacity <= 0:
+            return "Can't perform operations on 0 capacity cache"
         if key in self.ckeys.keys():
             current = self.ckeys[key] 
             current.next.prev = current.prev
@@ -30,6 +32,9 @@ class LRU_Cache:
         return -1
 
     def set(self, key, value):
+        if self.capacity <= 0:
+            print("Can't perform operations on 0 capacity cache")
+            return
         if key in self.ckeys.keys():
             current = self.ckeys[key]
             current.value = value
@@ -83,3 +88,17 @@ if __name__ == "__main__":
     our_cache.set(6, 6)
 
     print(our_cache.get(3))      # returns -1 because the cache reached it's capacity and 3 was the least recently used entry
+
+
+    our_cache = LRU_Cache(2)
+    our_cache.set(1, 1)
+    our_cache.set(2, 2)
+    our_cache.set(1, 3)
+    print(our_cache.get(1)) # should return 3
+    print(our_cache.get(2)) # should return 2
+
+    our_cache = LRU_Cache(0)
+    our_cache.set(1, 1)
+    # should print some message like "Can't perform operations on 0 capacity cache"
+    print(our_cache.get(1))
+    # should print some message like "Can't perform operations on 0 capacity cache"
