@@ -59,13 +59,13 @@ class HuffMan:
 
     def huffman_encoding(self, data):
         self.data = data
-        if self.data == None:
-            return None
-        if len(self.data) == 1:
-            self.decode = {'0': data}
-            return '0', self.decode
+        if not self.data:
+            return 'Empty string!', ""
         huff_tree = self.huff_tree()
         self.huff_code(huff_tree)
+        if len(self.data) == 1 or len(self.huff_list) == 1:
+            self.decode = {'0': data}
+            return '0', self.decode
         result = ''
         for char in self.data:
             result += self.encode[char]
@@ -73,6 +73,8 @@ class HuffMan:
 
 
     def huffman_decoding(self, data, decode_dict):
+        if not data or not decode_dict:
+            return "Empty input!"
         current_bit = ""
         decode_data = ""
         for bit in data:
@@ -116,3 +118,30 @@ if __name__ == "__main__":
     print ("The size of the decoded data is: {}\n".format(sys.getsizeof(decoded_data)))
     #the content of the encoded data should equal to the origin content.
     print ("The content of the encoded data is: {}\n".format(decoded_data))
+
+
+    duplicate_string = "aaaaaaaa"
+    print ("The size of the data is: {}\n".format(sys.getsizeof(duplicate_string)))
+    print ("The content of the data is: {}\n".format(duplicate_string))
+    huffman = HuffMan()
+    encoded_data, dict_ = huffman.huffman_encoding(duplicate_string)
+    
+    # encode data size should less than origin data size.
+    print ("The size of the encoded data is: {}\n".format(sys.getsizeof(int(encoded_data, base=2))))
+    #should print encode data like 0101.
+    print ("The content of the encoded data is: {}\n".format(encoded_data))
+    
+    decoded_data = huffman.huffman_decoding(encoded_data, dict_)
+    #the size of the decoded data should be equal to the size of the origin data.
+    print ("The size of the decoded data is: {}\n".format(sys.getsizeof(decoded_data)))
+    #the content of the encoded data should equal to the origin content.
+    print ("The content of the encoded data is: {}\n".format(decoded_data))
+
+    empty_string = ""
+    print ("The size of the data is: {}\n".format(sys.getsizeof(empty_string)))
+    print ("The content of the data is: {}\n".format(empty_string))
+    huffman = HuffMan()
+    encoded_data, dict_ = huffman.huffman_encoding(empty_string)
+    print(encoded_data)  # should return a message "empty string!"
+    decoded_data = huffman.huffman_decoding("", "")
+    print(decoded_data)  # should return a message "Empty input!"
