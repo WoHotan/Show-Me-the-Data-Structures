@@ -27,6 +27,9 @@ def is_user_in_group(user, group):
       user(str): user name/id
       group(class:Group): group to check user membership against
     """
+    if not isinstance(group, Group):
+        return "Invalid group!"
+        
     users = group.get_users()
     groups = group.get_groups()
 
@@ -57,4 +60,6 @@ assert(is_user_in_group("sub2child", sub_child) == True)
 child.add_group(sub_child)
 parent.add_group(child)
 assert(is_user_in_group("youngqueenz", parent) == True)
-print(is_user_in_group("youngqueenz", parent))
+
+assert(is_user_in_group('youngqueenz', 'group') == "Invalid group!")
+assert(is_user_in_group('youngqueenz') == True)
