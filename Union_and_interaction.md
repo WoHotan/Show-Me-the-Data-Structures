@@ -1,2 +1,3 @@
-1. Use a set() get all link list node value, and the create new link list. time complexity O(0).
-2. Use set() stored two link list node value separately, ant then create new link list use the intersection of two set. time complexity O(n).
+1. Use a set() get all link list node value, and the create new link list. n represent the number of node here, so time complexity O(n).
+2. Use set() stored two link list node value separately, ant then create new link list use the intersection of two set. n represent the number of node here, time complexity O(n).
+3. This implementation requires additional space to store nodes, and the space complexity is O(n). 
