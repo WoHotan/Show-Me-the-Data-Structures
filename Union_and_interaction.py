@@ -55,7 +55,7 @@ def union(llist_1, llist_2):
         node2 = node2.next
     for value in s_llist:
         union_llist.append(value)
-    return union_llist
+    return union_llist if union_llist.head is not None else "No union"
 
 def intersection(llist_1, llist_2):
     # Your Solution Here
@@ -74,7 +74,7 @@ def intersection(llist_1, llist_2):
     intersection = s_llist1 & s_llist2
     for value in intersection:
         intersection_llist.append(value)
-    return intersection_llist
+    return intersection_llist if intersection_llist.head is not None else "No intersection"
 
 print('# Test case 1')
 
@@ -126,3 +126,18 @@ for i in element_2:
 
 print (union(linked_list_5,linked_list_6))        # return a linked list, elements are linked_list_5 ∪ linked_list_6.
 print (intersection(linked_list_5,linked_list_6)) # return a linked list, elements are linkded_list_5 ∩ linked_linst_6.
+
+linked_list_7 = LinkedList()
+linked_list_8 = LinkedList()
+
+element_1 = []
+element_2 = []
+
+for i in element_1:
+    linked_list_7.append(i)
+
+for i in element_2:
+    linked_list_8.append(i)
+
+print (union(linked_list_7,linked_list_8))        # return a linked list, elements are linked_list_7 ∪ linked_list_8.
+print (intersection(linked_list_7,linked_list_8)) # return a linked list, elements are linkded_list_7 ∩ linked_linst_8.
